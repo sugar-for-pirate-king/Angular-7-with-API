@@ -1,0 +1,25 @@
+<div class="container">
+  <h1>Account Form Edit</h1>
+</div>
+
+<div class="container">
+  <form [formGroup]="accountUpdateForm">
+        <input type="hidden" formControlName="accountNumber" >
+      <div class="form-group">
+          <label for="" class="col-md-2"> Open Date</label>
+          <input type="date" formControlName="openDate" >
+      </div>
+      <div class="form-group">
+          <label for="" class="col-md-2"> Balance</label>
+          <input type="text" formControlName="balance">
+      </div>
+      <div class="form-group">
+          <label for="" class="col-md 2">Id</label>
+          <select formControlName="customer" >
+              <option *ngFor="let cust of customer" [ngValue]="cust">{{cust.customerNumber}}</option>
+          </select>
+      </div>
+  </form>
+  <button (click)="submitData()">Submit</button>
+  <button (click)="cancelChange()">Cancel</button>
+</div>

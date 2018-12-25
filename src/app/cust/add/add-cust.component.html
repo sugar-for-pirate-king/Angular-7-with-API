@@ -1,0 +1,42 @@
+<div> 
+    <h1 class="container">form-add</h1>
+    </div>
+      <div class="container">
+        <form [formGroup]="addForm">
+        <div>
+          <label for="" class="col-md-2">First Name</label>
+          <input type="text" formControlName="firstName">
+        </div>
+        <div>
+          <label for="" class="col-md-2">Last Name</label>
+          <input type="text" formControlName="lastName">
+          </div>
+        <div>
+          <label for="" class="col-md-2">birth date</label>
+          <input type="date" formControlName="birthDate">
+        </div>
+        <div>
+          <label for="" class="col-md-2">Username</label>
+          <input type="text" formControlName="username">
+        </div>
+        <div>
+          <label for="" class="col-md-2">Password</label>
+          <input type="text" formControlName="password">
+        </div>
+        <div>
+          <label for="" class="col-md-2">Phone Number</label>
+          <input type="text" formControlName="phoneNumber">
+        </div>
+        <div>
+          <label for="" class="col-md-2">Phone type</label>
+          <select formControlName="phoneType">
+            <option *ngFor="let type of phonetypes" [ngValue]='type'>{{type.value}}</option>
+          </select>
+        </div>
+      </form>
+      </div>
+    
+    <div>
+      <button (click)="submitAddGroup()" [disabled]="!addForm.valid">Submit</button>
+      <button>Cancel</button>
+    </div>

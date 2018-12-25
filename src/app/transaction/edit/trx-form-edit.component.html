@@ -1,0 +1,29 @@
+<div class="container">
+    <h1>Account Form Edit</h1>
+  </div>
+  
+  <div class="container">
+    <form [formGroup]="transactionUpdateForm">
+          <input type="hidden" formControlName="id" >
+        <div class="form-group">
+            <label for="" class="col-md-2"> type</label>
+            <input type="date" formControlName="type" >
+        </div>
+        <div class="form-group">
+            <label for="" class="col-md-2"> amount</label>
+            <input type="number" formControlName="amount">
+        </div>
+        <div class="form-group">
+            <label for="" class="col-md-2"> amount Sign</label>
+            <input type="text" formControlName="amountSign">
+        </div>
+        <div class="form-group">
+            <label for="" class="col-md 2">Id</label>
+            <select formControlName="account" >
+                <option *ngFor="let account of account" [ngValue]="account.accountNumber">{{account.accountNumber}}</option>
+            </select>
+        </div>
+    </form>
+    <button (click)="submitData()">Submit</button>
+    <button (click)="cancelChange()">Cancel</button>
+  </div>

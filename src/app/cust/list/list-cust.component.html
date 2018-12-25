@@ -1,0 +1,38 @@
+<div>
+<h1 style="text-align: center">LIST CUSTOMER</h1>
+</div>
+
+<div class="container">
+  <a (click)="showCreate()">Tambah</a>
+</div>
+<div class="container">
+<table border="1">
+  <thead>
+    <th>Id</th>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Birtd Date</th>
+    <th>Username</th>
+    <th>Password</th>
+    <th>Phone Number</th>
+    <th>Phone Type</th>
+    <th>Action</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let cust of listCust">
+      <td><a (click)="selectCust(cust)">{{cust.customerNumber | pipe}}</a></td>
+      <td>{{cust.firstName}}</td>
+      <td>{{cust.lastName}}</td>
+      <td>{{cust.birthDate}}</td>
+      <td>{{cust.username}}</td>
+      <td>{{cust.password}}</td>
+      <td>{{cust.phoneNumber}}</td>
+      <td>{{cust.phoneType}}</td>
+      <td><Button (click)="deleteId(cust.customerNumber);">Delete</Button><button (click)="viewAccount(cust);">View Account</button></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<app-cust-form #formCustomer *ngIf="showDetail" [cust]="selectedCust" (result)="prosesResult($event)"></app-cust-form>
+<app-add-cust *ngIf="showCreated" [cust]="selectedCust" (result)="prosesResult($event)"></app-add-cust>

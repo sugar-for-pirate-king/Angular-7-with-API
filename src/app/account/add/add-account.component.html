@@ -1,0 +1,24 @@
+<div class="container">
+  <h1>Account Form</h1>
+</div>
+<div class="card" class="container">
+    <div class="card-body" class="container">
+      <form [formGroup]="addFormAccount">
+        <div>
+          <label class="col-md-2">Open Date</label>
+          <input type="date" formControlName="openDate"/>
+        </div>
+        <div>
+            <label class="col-md-2">balance</label>
+            <input type="text" formControlName="balance">
+        </div>
+        <div>
+            <label for="" class="col-md-2">customer</label>
+            <select formControlName="customer" >
+              <option *ngFor="let cust of customer" >{{cust.customerNumber}}</option>
+            </select>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+        </div>
+      </form>
+      <button (click)="submitAddGroup()">Submit</button>
+    </div>
+  </div>

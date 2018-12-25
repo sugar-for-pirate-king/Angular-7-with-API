@@ -1,0 +1,29 @@
+<div class="container">
+  <h1>Transaction List</h1>
+</div>
+
+<div class="container">
+  <table class="table">
+    <thead>
+      <th scope="col">Id</th>
+      <th scope="col">Type</th>
+      <th scope="col">Amount</th>
+      <th scope="col">AmountSign</th>
+      <th scope="col">Account</th>
+      <th scope="col">Action</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let trx of listTransaction">
+        <td>{{trx.id}}</td>
+        <td>{{trx.type}}</td>
+        <td>{{trx.amount}}</td>
+        <td>{{trx.amountSign}}</td>
+        <td>{{trx.account.accountNumber}}</td>
+        <td><button class="btn btn-warning" (click)="deleteTransaction(trx.accountNumber)">delete</button>
+          <button class="btn btn-primary" (click)="selectTransaction(trx)" >Edit</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<app-trx-form-edit #formTransaction *ngIf="showDataTrx" [transaction]="selectedTransaction" (result)="processResult($event)"></app-trx-form-edit>
