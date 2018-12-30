@@ -9,6 +9,7 @@ import { LisctAccountComponent } from './account/list/lisct-account.component';
 import { AddAccountComponent} from './account/add/add-account.component';
 import { AccFormEditComponent } from './account/edit/acc-form-edit.component';
 import { ListTransactionComponent } from './transaction/list/list-transaction.component';
+import { AddTransactionComponent } from './transaction/add/add-transaction.component'
   import { from } from 'rxjs';
 
 const routes: Routes = [
@@ -20,7 +21,8 @@ const routes: Routes = [
   {path : 'account', component : LisctAccountComponent},
   {path : 'formAddAccount', component : AddAccountComponent},
   {path : 'formEditAcc', component : AccFormEditComponent},
-  {path : 'transaction', component : ListTransactionComponent}
+  {path : 'transaction', component : ListTransactionComponent},
+  {path : 'formAddtrx', component : AddTransactionComponent}
 ];
 
 @NgModule({

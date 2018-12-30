@@ -1,0 +1,31 @@
+<div class="container">
+  <h3>Form Add Transaction</h3>
+</div>
+
+<div class="container">
+  <form [formGroup]="addForm">
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label class="col-md-6">-- Type Buy -- </label>
+        <input class="form-control" formControlName="type">
+      </div>
+      <div class="form-group col-md-6">
+        <label class="col-md-6">-- Amount --</label>
+        <input class="form-control" formControlName="amount">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label class="col-md-6">-- Amount Sign -- </label>
+        <input class="form-control" formControlName="amountSign">
+      </div>
+      <div class="form-group col-md-6">
+        <label class="col-md-6">-- Account --</label>
+        <app-combo-account (account)="setSelectedAccount($event)"></app-combo-account>
+      </div>
+    </div>
+    <button (click)="submitData()" [disabled]='!addForm.valid'>Submit</button>
+    <button>Cancel</button>
+  </form>
+</div>

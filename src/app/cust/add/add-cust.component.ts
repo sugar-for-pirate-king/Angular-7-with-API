@@ -2,6 +2,8 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Customer } from '../service/cust';
 import { CustService } from '../service/cust.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+  import { from } from 'rxjs';
 
 @Component({
   selector: 'app-add-cust',
@@ -9,10 +11,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./add-cust.component.css']
 })
 export class AddCustComponent implements OnInit {
-  phonetypes = [
-    { name:"option1", value:'Android'}, 
-    { name:"option2", value:'IOS'}
-  ]
+  phonetypes = ['Android', 'IOS'];
   
   @Input() 
   cust: Customer;
@@ -20,7 +19,7 @@ export class AddCustComponent implements OnInit {
   result = new EventEmitter();
   
   addForm : FormGroup;
-  constructor(private custService: CustService, private formBuilder: FormBuilder) { }
+  constructor(private custService: CustService, private formBuilder: FormBuilder, private router : Router) { }
 
   ngOnInit() {
     this.addForm = this.formBuilder.group({ 
@@ -50,6 +49,7 @@ export class AddCustComponent implements OnInit {
     this.custService.save(customer).subscribe((response)=>{
       console.log(JSON.stringify(response));
       this.result.emit(true);
+      this.router.navigate(['cust'])
     },(err)=>{
       console.log('Error' + JSON.stringify(err));
     });

@@ -3,7 +3,7 @@ import { AccServiceService } from '../service/acc-service.service';
 import { Account } from '../service/account';
 import { AccFormEditComponent } from '../edit/acc-form-edit.component';
   import { from } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-lisct-account',
@@ -16,19 +16,22 @@ export class LisctAccountComponent implements OnInit {
   listAccount: Account[] = [];
   showDataAccount:boolean= false;
   selectedAccount: Account = new Account();
-  constructor(private accountService: AccServiceService, private activatedRoute: ActivatedRoute) { }
+  constructor(private accountService: AccServiceService, private activatedRoute: ActivatedRoute, private route : Router) { }
   
   ngOnInit() {
     this.activatedRoute.params.subscribe(params =>{
       const customer:string = params ['customer'];
+      
       this.loadData(customer);
     });
   }
   
-  loadData(customer){
+  //See list-account
+  loadData(customer?){
     this.accountService.getList(customer).subscribe((response)=>{
-    console.log(JSON.stringify(response));
-    Object.assign(this.listAccount, response);
+    // console.log(JSON.stringify(response));
+    this.listAccount =[];
+    Object.assign(this.listAccount, response['values']);
     },(err)=>{
       alert('Error' + JSON.stringify(err));
     });
@@ -54,7 +57,9 @@ export class LisctAccountComponent implements OnInit {
 
     this.selectedAccount = copyAccount;
     this.showDataAccount = true;
-    this.formAccount.UpdateData();
+    // if(this.formAccount){
+    // this.formAccount.UpdateData();
+    // }
   }
 
   deleteAccount(id){
@@ -67,4 +72,8 @@ export class LisctAccountComponent implements OnInit {
   }
 }
 
+  viewTransaction(account : Account){
+    console.log('account' + account.accountNumber);
+    this.route.navigate(['transaction',{account: account.accountNumber}]);
+  }
 }

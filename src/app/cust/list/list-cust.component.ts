@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Directive } from '@angular/core';
 import { Customer } from '../service/cust';
 import { CustService } from '../service/cust.service';
 import { from } from 'rxjs';
@@ -46,13 +46,15 @@ export class ListCustComponent implements OnInit {
     this.selectedCust = copyCust;
     this.showDetail = true;
     this.showCreated = false;
-    this.formCustomer.UpdateData();
+    if(this.formCustomer){
+      this.formCustomer.UpdateData()
+    };
   }
 
   loadData(){
     this.custService.getList().subscribe((response)=>{
     console.log(JSON.stringify(response));
-    Object.assign(this.listCust, response);
+    Object.assign(this.listCust, response['values']);
     
     },(err)=>{
       console.log('Error' + JSON.stringify(err));
@@ -78,6 +80,6 @@ export class ListCustComponent implements OnInit {
 
   viewAccount( customer: Customer){
     console.log('customer' + customer.customerNumber);
-    this.route.navigate(['/account',{customer: customer.customerNumber}]);
+    this.route.navigate(['account',{customer: customer.customerNumber}]);
   }
 }

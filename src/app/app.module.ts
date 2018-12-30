@@ -19,7 +19,10 @@ import { ServicePipe } from './account/service.pipe';
 import { AccFormEditComponent } from './account/edit/acc-form-edit.component';
 import { ListTransactionComponent } from './transaction/list/list-transaction.component';
 import { TrxFormEditComponent } from './transaction/edit/trx-form-edit.component';
-import { ComboCustomerComponent } from './cust/combo/combo-customer.component';
+import { CustomerComboComponent } from './share/combo/customer-combo.component';
+import { ComboCustomerComponent } from './combo-box/combo/combo-customer.component';
+import { AddTransactionComponent } from './transaction/add/add-transaction.component';
+import { ComboAccountComponent } from './combo-box/combo-account.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +40,10 @@ import { ComboCustomerComponent } from './cust/combo/combo-customer.component';
     AccFormEditComponent,
     ListTransactionComponent,
     TrxFormEditComponent,
-    ComboCustomerComponent
+    CustomerComboComponent,
+    ComboCustomerComponent,
+    AddTransactionComponent,
+    ComboAccountComponent
   ],
   imports: [
     BrowserModule,

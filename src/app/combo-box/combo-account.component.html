@@ -1,0 +1,5 @@
+<select (change)="onChange($event.target.value)" mdbInputDirective class="form-control" >
+  <option *ngFor="let item of listAccount; let i = index" [value]="i" >
+    {{ item.accountNumber}}
+  </option>
+</select>

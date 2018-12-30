@@ -10,23 +10,29 @@ export class TrxService {
 
   constructor(private httpClient:HttpClient) { }
 
-  getListTrx(){
-    return this.httpClient.get('http://localhost:8080/transaction/trxlist');
+  getListTrx(account?){
+    let Params: String = '';
+      if(account){
+        Params = '?account=' + account;
+    return this.httpClient.get('http://localhost:7000/api/transaction/list' + Params);
+  } else {
+    return this.httpClient.get('http://localhost:7000/api/transaction/list');
   }
+}
 
   save(transaction: Transaction){
-    return this.httpClient.post('http://localhost:8080/transaction/trx', transaction);
+    return this.httpClient.post('http://localhost:7000/api/transaction', transaction);
   }
 
   delete(id){
-    return this.httpClient.delete('http://localhost:8080/transaction/trx/' + id);
+    return this.httpClient.delete('http://localhost:7000/api/transaction/' + id);
   }
 
   update(transaction: Transaction){
-    return this.httpClient.put('http://localhost:8080/transaction/trxupt', transaction);
+    return this.httpClient.put('http://localhost:7000/api/transaction', transaction);
   }
 
   getListAccount(){
-    return this.httpClient.get('http://localhost:8080/account/listaccount');
+    return this.httpClient.get('http://localhost:7000/api/account/list');
   }
 }

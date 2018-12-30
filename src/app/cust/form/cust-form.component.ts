@@ -13,10 +13,9 @@ export class CustFormComponent implements OnInit {
   @Input()
   cust: Customer;
   @Output() 
-  result= new EventEmitter();
+  result = new EventEmitter();
   customerUpdateFormGroup : FormGroup;
   constructor(private custService: CustService, private formBuilder: FormBuilder) { 
-    this.UpdateData();
   }
 
   ngOnInit() {
@@ -24,12 +23,13 @@ export class CustFormComponent implements OnInit {
       customerNumber: [''],
       firstName: ['',Validators.required],
       lastName: ['', Validators.required],
-      birthDate: [''],
+      birthDate: [Date],
       username: [''],
       password: [''],
       phoneNumber: ['', Validators.required],
       phoneType: ['',Validators.required]
     });
+    this.UpdateData()
   }
 
   UpdateData(){
@@ -77,7 +77,7 @@ export class CustFormComponent implements OnInit {
     });
   }
 
-  cancelChanges(){
+  cancel(){
     this.result.emit(true);
   }
 }

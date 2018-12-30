@@ -7,20 +7,20 @@
           <input type="hidden" formControlName="id" >
         <div class="form-group">
             <label for="" class="col-md-2"> type</label>
-            <input type="date" formControlName="type" >
+            <input type="date" formControlName="type" class="form-control">
         </div>
         <div class="form-group">
             <label for="" class="col-md-2"> amount</label>
-            <input type="number" formControlName="amount">
+            <input type="number" formControlName="amount" class="form-control">
         </div>
         <div class="form-group">
             <label for="" class="col-md-2"> amount Sign</label>
-            <input type="text" formControlName="amountSign">
+            <input type="text" formControlName="amountSign" class="form-control">
         </div>
         <div class="form-group">
             <label for="" class="col-md 2">Id</label>
-            <select formControlName="account" >
-                <option *ngFor="let account of account" [ngValue]="account.accountNumber">{{account.accountNumber}}</option>
+            <select name="" id="">
+                <option value="">Test</option>
             </select>
         </div>
     </form>

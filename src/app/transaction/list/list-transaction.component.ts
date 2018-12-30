@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { TrxService } from '../service/trx.service';
 import { Transaction } from '../service/trx';
-import { TrxFormEditComponent } from '../edit/trx-form-edit.component';
+import { ActivatedRoute, Router } from '@angular/router';
 import { from } from 'rxjs';
 @Component({
   selector: 'app-list-transaction',
@@ -9,27 +9,28 @@ import { from } from 'rxjs';
   styleUrls: ['./list-transaction.component.css']
 })
 export class ListTransactionComponent implements OnInit {
-  @ViewChild('formTransaction')
-  formTransaction: TrxFormEditComponent;
-  listTransaction: Transaction[] = [];
+  transaction: Transaction[] = [];
   showDataTrx: boolean = false;
   selectedTransaction: Transaction = new Transaction();
-  constructor(private trxService: TrxService) { }
+  constructor(private trxService: TrxService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.loadData();
+    this.route.params.subscribe(params =>{
+      const account:string =params['account'];
+      this.loadData(account);
+    })
   }
 
-  loadData(){
-    this.trxService.getListTrx().subscribe((response)=>{
-      console.log(JSON.stringify(response));
-      Object.assign(this.listTransaction, response);
+  loadData(account?){
+    this.trxService.getListTrx(account).subscribe((response)=>{
+      // console.log(JSON.stringify(response['values']));
+      Object.assign(this.transaction, response['values']);
     }, (err)=>{
       console.log('Error' + JSON.stringify(err));
     });
   }
 
-  processResult(result){
+  prosesResult(result){
     if(result){
       this.showDataTrx= false;
       this.loadData();
@@ -41,7 +42,7 @@ export class ListTransactionComponent implements OnInit {
   }
 
   selectTransaction(transaction: Transaction){
-    let copyTransaction = new Transaction;
+    let copyTransaction = new Transaction();
     copyTransaction.id = transaction.id;
     copyTransaction.type = transaction.type;
     copyTransaction.amount = transaction.amount;
@@ -50,7 +51,6 @@ export class ListTransactionComponent implements OnInit {
 
     this.selectedTransaction = copyTransaction;
     this.showDataTrx = true;
-    this.formTransaction.UpdateData();
   }
 
   deleteTransaction(id){

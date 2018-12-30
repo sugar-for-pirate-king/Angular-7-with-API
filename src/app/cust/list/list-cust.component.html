@@ -1,26 +1,31 @@
 <div>
 <h1 style="text-align: center">LIST CUSTOMER</h1>
 </div>
+<div class="container">
+<app-cust-form #formCustomer *ngIf="showDetail" [cust]="selectedCust" (result)="prosesResult($event)"></app-cust-form>
+<app-add-cust *ngIf="showCreated" [cust]="selectedCust" (result)="prosesResult($event)"></app-add-cust>
+</div>
 
 <div class="container">
-  <a (click)="showCreate()">Tambah</a>
-</div>
+    <button type="button" class="btn btn-primary" routerLink="/formAdd"><i class="fa fa-plus">Add</i></button>
+</div><br>
 <div class="container">
-<table border="1">
+  <div class="col-md-12">
+  <table class="table">
   <thead>
-    <th>Id</th>
-    <th>First Name</th>
-    <th>Last Name</th>
-    <th>Birtd Date</th>
-    <th>Username</th>
-    <th>Password</th>
-    <th>Phone Number</th>
-    <th>Phone Type</th>
-    <th>Action</th>
+    <th scope="col">Id</th>
+    <th scope="col">First Name</th>
+    <th scope="col">Last Name</th>
+    <th scope="col">Birtd Date</th>
+    <th scope="col">Username</th>
+    <th scope="col">Password</th>
+    <th scope="col">Phone Number</th>
+    <th scope="col">Phone Type</th>
+    <th scope="col">Action</th>
   </thead>
   <tbody>
     <tr *ngFor="let cust of listCust">
-      <td><a (click)="selectCust(cust)">{{cust.customerNumber | pipe}}</a></td>
+      <td>{{cust.customerNumber | pipe}}</td>
       <td>{{cust.firstName}}</td>
       <td>{{cust.lastName}}</td>
       <td>{{cust.birthDate}}</td>
@@ -28,11 +33,12 @@
       <td>{{cust.password}}</td>
       <td>{{cust.phoneNumber}}</td>
       <td>{{cust.phoneType}}</td>
-      <td><Button (click)="deleteId(cust.customerNumber);">Delete</Button><button (click)="viewAccount(cust);">View Account</button></td>
+      <td><button class="btn btn-warning" (click)="selectCust(cust);"><i class="fa fa-edit"></i></button>
+        <button (click)="deleteId(cust.customerNumber);" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+        <button (click)="viewAccount(cust);" class="btn btn-success"><i class="fa fa-eye"></i></button></td>
     </tr>
   </tbody>
 </table>
 </div>
+</div>
 
-<app-cust-form #formCustomer *ngIf="showDetail" [cust]="selectedCust" (result)="prosesResult($event)"></app-cust-form>
-<app-add-cust *ngIf="showCreated" [cust]="selectedCust" (result)="prosesResult($event)"></app-add-cust>

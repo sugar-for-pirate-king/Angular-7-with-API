@@ -84,7 +84,7 @@
               "node_modeles/bootstrap/dist/css/bootstrap-grid.css",
               "node_modeles/bootstrap/dist/css/bootstrap-grid.min.css",
               "node_modeles/bootstrap/dist/css/bootstrap.css",
-              "node_modules/font-awesome/css/font-awesome.css"
+              "../node_modules/font-awesome/css/font-awesome.css"
             ],
             "scripts": [
               "node_modules/bootstrap/dist/js/bootstrap.js",

@@ -1,5 +1,0 @@
-<select (change)="onChange($event.target.value)" class="form-control">
-  <option *ngFor="let cust of listCustomer; let i = index" [value]="i">
-    {{cust.firstName + "-" + cust.lastName}}
-  </option>
-</select>

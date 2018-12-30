@@ -1,24 +1,45 @@
-<div class="container">
+<div> 
+    <h1 class="container">form-add</h1>
+    </div>
+      <div class="container">
+        <form [formGroup]="addFormAccount">
+        <div class="form-row">
+          <div class="form-group col-md-6">
+          <label for="" class="col-md-4">-- OPEN DATE -- </label>
+          <input type="date" formControlName="openDate" class="form-control" required>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="" class="col-md-4">-- BALANCE -- </label>
+          <input type="text" formControlName="balance" class="form-control" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="" class="col-md-2">-- Customer --</label>
+          <app-combo-customer (customer)="setSelectedAccount($event)"></app-combo-customer>
+        </div>
+        <button (click)="submitAddGroup()" [disabled]="!addFormAccount.valid">Submit</button>
+        <button (click)="cancel()">Cancel</button>
+      </form>
+      </div>
+<!-- <div class="container">
   <h1>Account Form</h1>
 </div>
 <div class="card" class="container">
     <div class="card-body" class="container">
       <form [formGroup]="addFormAccount">
-        <div>
-          <label class="col-md-2">Open Date</label>
-          <input type="date" formControlName="openDate"/>
+        <div class=" form-group">
+          <label class="col-md-2">-- OPEN DATE --</label>
+          <input type="date" formControlName="openDate" class="form-control col-md-3"/>
         </div>
-        <div>
-            <label class="col-md-2">balance</label>
-            <input type="text" formControlName="balance">
+        <div class="form-group">
+            <label class="col-md-2">-- BALANCE --</label>
+            <input type="text" formControlName="balance" class="form-control col-md-3">
         </div>
-        <div>
-            <label for="" class="col-md-2">customer</label>
-            <select formControlName="customer" >
-              <option *ngFor="let cust of customer" >{{cust.customerNumber}}</option>
-            </select>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+        <div class="form-group">
+            <label for="" class="col-md-2">-- CUSTOMER --</label>
+            <app-combo-customer (customer)="setSelectedCustomer($event)")></app-combo-customer>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
         </div>
       </form>
       <button (click)="submitAddGroup()">Submit</button>
     </div>
-  </div>
+  </div> -->

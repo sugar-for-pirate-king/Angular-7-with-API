@@ -25,19 +25,36 @@ export class AccFormEditComponent implements OnInit {
       balance: ['', Validators.required],
       customer: ['', Validators.required]
     });
-    this.getCustomer();
+    this.UpdateData();
   }
 
   getCustomer(){
-    this.accountService.getListCustomer().subscribe(response=>{
+    if(Customer == null){
+      err=>{
+        console.log("Error" + JSON.stringify(err));
+      }
+    }else{
+    this.accountService.getListByCustomer().subscribe(response=>{
       this.customer = response;
       console.log(this.customer);
-    }, err=>{
-      console.log("Error" + JSON.stringify(err));
-    });
+    })
+  };
+}
+
+UpdateData(){
+  this.setDataFormAccount(this.account);
+}
+
+setDataFormAccount(account){
+  if(account){
+    this.accountUpdateForm.controls['accountNumber'].setValue(this.account.accountNumber);
+    this.accountUpdateForm.controls['openDate'].setValue(this.account.openDate);
+    this.accountUpdateForm.controls['balance'].setValue(this.account.balance);
+    this.accountUpdateForm.controls['customer'].setValue(this.account.customer ? this.account.accountNumber : '');
   }
+}
   
-  submitData(){
+  submitUpdateGroup(){
     let account = new Account();
     account.accountNumber = this.accountUpdateForm.controls['accountNumber'].value;
     account.openDate = this.accountUpdateForm.controls['openDate'].value;
@@ -55,13 +72,24 @@ export class AccFormEditComponent implements OnInit {
     });
   }
 
-  UpdateData(){
-    if(this.account){
-      this.accountUpdateForm.controls['accountNumber'].setValue(this.account.accountNumber);
-      this.accountUpdateForm.controls['openDate'].setValue(this.account.openDate);
-      this.accountUpdateForm.controls['balance'].setValue(this.account.balance);
-      this.accountUpdateForm.controls['customer'].setValue(this.account.customer);
-    }
+  submitData(){
+    this.accountService.update(this.account).subscribe((response)=>{
+      console.log(JSON.stringify(response));
+      this.result.emit(true);
+    }, (err)=>{
+      console.log('Error' + JSON.stringify(err));
+    });
+  }
+  
+  cancel(){
+    this.result.emit(true);
+  }
+
+  setSelectedCustomer(customer : Customer){
+    this.accountUpdateForm.controls['customer'].setValue(customer.customerNumber);
+    alert(customer.customerNumber);
+
+    this.accountUpdateForm.updateValueAndValidity();  
   }
 
 }

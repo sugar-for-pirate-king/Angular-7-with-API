@@ -10,27 +10,29 @@ export class AccServiceService {
 
   constructor(private httpClient:HttpClient) { }
 
-  getList(customer){
-    let params : String = "";
-    if(customer){
-      params = '?customer=' + customer
+  getList(customer?){
+    let Params: String = '';
+      if(customer){
+        Params = '?customer=' + customer;
+      return this.httpClient.get('http://localhost:7000/api/account/list' + Params);
+    }else{
+      return this.httpClient.get('http://localhost:7000/api/account/list');
     }
-    return this.httpClient.get('http://localhost:8080/account/listaccount' + params);
   }
-  
+
   save(account : Account){
-    return this.httpClient.post('http://localhost:8080/account/acc', account);
+    return this.httpClient.post('http://localhost:7000/api/account', account);
   }
 
   delete(id){
-    return this.httpClient.delete('http://localhost:8080/account/acc/'+ id);
-  }
-
-  getListCustomer(){
-    return this.httpClient.get('http://localhost:8080/customer/cust');
+    return this.httpClient.delete('http://localhost:7000/api/account/'+ id);
   }
   
   update(account: Account){
-    return this.httpClient.put('http://localhost:8080/account/accupd', account);
+    return this.httpClient.put('http://localhost:7000/api/account', account);
+  }
+
+  getListByCustomer(){
+    return this.httpClient.get('http://localhost:3000/account/list');
   }
 }
